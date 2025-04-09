@@ -1,0 +1,17 @@
+{
+  "name": "ocr-pdf",
+  "version": "1.0.0",
+  "description": "Công cụ OCR cho PDF ảnh",
+  "main": "ocr-pdf.js",
+  "scripts": {
+    "start": "node ocr-pdf.js"
+  },
+  "dependencies": {
+    "tesseract.js": "^4.1.1",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^3.11.174",
+    "pdf-lib": "^1.17.1",
+    "jimp": "^0.22.10",
+    "xmldom": "^0.6.0"
+  }
+} 
