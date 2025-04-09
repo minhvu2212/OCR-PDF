@@ -1,17 +1,50 @@
 {
-  "name": "ocr-pdf",
+  "name": "pdf-ocr-app",
+  "private": true,
   "version": "1.0.0",
-  "description": "Công cụ OCR cho PDF ảnh",
-  "main": "ocr-pdf.js",
+  "type": "module",
   "scripts": {
-    "start": "node ocr-pdf.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "tesseract.js": "^4.1.1",
-    "pdf-parse": "^1.1.1",
-    "pdfjs-dist": "^3.11.174",
+    "@pdf-lib/fontkit": "^1.1.1",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.320.0",
     "pdf-lib": "^1.17.1",
-    "jimp": "^0.22.10",
-    "xmldom": "^0.6.0"
+    "pdfjs-dist": "^4.10.38",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-helmet-async": "^2.0.4",
+    "react-router-dom": "^6.22.0",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "tesseract.js": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-pwa": "^0.17.4"
   }
-} 
+}
