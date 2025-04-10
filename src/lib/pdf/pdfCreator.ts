@@ -1,9 +1,12 @@
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import { PageOcrResult } from '../../types/pdf.types';
 import * as pdfjsLib from 'pdfjs-dist';
+import { normalizeVietnameseText } from '../ocr/textFormattingUtil';
 
 // Đảm bảo worker được thiết lập cho pdf.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
+
+
 
 /**
  * Tạo PDF có thể tìm kiếm từ file PDF gốc và kết quả OCR
@@ -16,6 +19,7 @@ export async function createSearchablePdf(
   try {
     // Đọc file PDF gốc
     const arrayBuffer = await originalPdf.arrayBuffer();
+    const arrayBufferCopy = arrayBuffer.slice(0); // Tạo bản sao để tránh lỗi detached
     
     // Lấy kích thước trang từ PDF gốc
     const pdfJsDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
@@ -28,7 +32,7 @@ export async function createSearchablePdf(
     }
     
     // Tạo PDF mới từ PDF gốc
-    const pdfDoc = await PDFDocument.load(arrayBuffer);
+    const pdfDoc = await PDFDocument.load(arrayBufferCopy);
     
     // Nhúng font
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -54,13 +58,16 @@ export async function createSearchablePdf(
       if (boxes && boxes.length > 0) {
         for (const box of boxes) {
           try {
+            // Chuẩn hóa text tiếng Việt
+            const normalizedText = normalizeVietnameseText(box.text);
+            
             // Chuyển đổi tọa độ từ hệ tọa độ OCR sang hệ tọa độ PDF
             // Giả sử tọa độ OCR bắt đầu từ trên cùng bên trái
             // PDF-lib sử dụng tọa độ bắt đầu từ dưới cùng bên trái
             const pdfX = box.x;
             const pdfY = height - box.y - box.height;
             
-            page.drawText(box.text, {
+            page.drawText(normalizedText, {
               x: pdfX,
               y: pdfY,
               size: 0.1,  // Kích thước nhỏ nhưng không phải 0 để đảm bảo chính xác
@@ -75,7 +82,8 @@ export async function createSearchablePdf(
       } else {
         // Nếu không có boxes, phân tích văn bản thành các dòng và đặt vào vị trí ước lượng
         try {
-          const lines = text.split('\n');
+          const normalizedText = normalizeVietnameseText(text);
+          const lines = normalizedText.split('\n');
           const lineHeight = height / (lines.length + 2); // Ước lượng khoảng cách dòng
           
           for (let i = 0; i < lines.length; i++) {
@@ -131,7 +139,8 @@ export async function createTextOnlyPdf(
     let originalSizes: Array<{ width: number; height: number }> = [];
     try {
       const arrayBuffer = await originalPdf.arrayBuffer();
-      const pdfJsDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const arrayBufferCopy = arrayBuffer.slice(0); // Tạo bản sao để tránh lỗi detached
+      const pdfJsDoc = await pdfjsLib.getDocument({ data: arrayBufferCopy }).promise;
       
       for (let i = 1; i <= pdfJsDoc.numPages; i++) {
         const page = await pdfJsDoc.getPage(i);
@@ -173,10 +182,11 @@ export async function createTextOnlyPdf(
       if (boxes && boxes.length > 0) {
         for (const box of boxes) {
           try {
+            const normalizedText = normalizeVietnameseText(box.text);
             const pdfX = box.x;
             const pdfY = height - box.y - box.height; // Chuyển đổi tọa độ Y
             
-            page.drawText(box.text, {
+            page.drawText(normalizedText, {
               x: pdfX,
               y: pdfY,
               size: 10,  // Kích thước nhìn thấy được
@@ -200,8 +210,10 @@ export async function createTextOnlyPdf(
       } else {
         // Nếu không có boxes, thêm toàn bộ văn bản ở vị trí cố định
         try {
+          // Chuẩn hóa text tiếng Việt
+          const normalizedText = normalizeVietnameseText(text);
           // Chia text thành các dòng để hiển thị dễ đọc hơn
-          const lines = text.split('\n');
+          const lines = normalizedText.split('\n');
           for (let i = 0; i < lines.length; i++) {
             page.drawText(lines[i], {
               x: 50,
@@ -230,4 +242,4 @@ export async function createTextOnlyPdf(
     console.error('Lỗi khi tạo PDF chỉ chứa text:', error);
     throw error;
   }
-} 
+}
