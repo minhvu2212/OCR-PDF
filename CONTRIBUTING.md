@@ -15,7 +15,7 @@ Thank you for your interest in contributing to the PDF OCR project! All contribu
 - Update README.md with details of changes when applicable.
 - Update documentation or usage guides if there are changes in how the app is used.
 - Pull Requests can be merged after review and approval.
-- Ensure that all checks and builds are successful.
+- Ensure that the code follows the existing style conventions.
 
 ## Code Standards
 

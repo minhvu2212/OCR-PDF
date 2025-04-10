@@ -72,13 +72,7 @@ The application is deployed at: https://ocr-pdf.pages.dev
 
 ## 🤝 Contributing
 
-All contributions are welcome! If you'd like to contribute to the project, please:
-
-1. Fork the project
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+All contributions are welcome! If you'd like to contribute to the project, please follow the guidelines in the `CONTRIBUTING.md` file.
 
 ## 📝 License
 
