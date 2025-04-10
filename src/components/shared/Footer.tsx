@@ -9,12 +9,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">PDF OCR</h3>
             <p className="text-gray-600 text-sm">
-              Công cụ miễn phí chuyển đổi PDF dạng ảnh sang PDF có thể tìm kiếm.
-              Ứng dụng hoạt động hoàn toàn trên trình duyệt web, không cần
-              tải lên máy chủ.
+              Công cụ miễn phí chuyển đổi PDF dạng ảnh sang PDF có thể tìm kiếm. Ứng dụng hoạt động
+              hoàn toàn trên trình duyệt web, không cần tải lên máy chủ.
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Liên kết</h3>
             <ul className="space-y-2">
@@ -40,7 +39,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Pháp lý</h3>
             <ul className="space-y-2">
@@ -56,27 +55,34 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Theo dõi</h3>
             <div className="flex space-x-4">
-              <a href="https:https://github.com/minhvu2212/OCR-PDF" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-500">
+              <a
+                href="https://github.com/minhvu2212/OCR-PDF"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-blue-500"
+              >
                 <Github className="h-5 w-5" />
               </a>
-
             </div>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row justify-between">
           <p className="text-sm text-gray-500">
             &copy; {new Date().getFullYear()} PDF OCR. Bản quyền thuộc về chúng tôi.
           </p>
           <p className="text-sm text-gray-500 mt-2 md:mt-0">
-            Được phát triển bởi <a href="#" className="text-blue-500 hover:underline">minhvu2212</a>
+            Được phát triển bởi{' '}
+            <a href="#" className="text-blue-500 hover:underline">
+              minhvu2212
+            </a>
           </p>
         </div>
       </div>
     </footer>
   );
-} 
+}

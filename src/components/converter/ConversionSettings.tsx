@@ -1,8 +1,8 @@
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Label } from "../ui/label";
-import { Button } from "../ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { OcrOptions } from "../../types/ocr.types";
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { Label } from '../ui/label';
+import { Button } from '../ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { OcrOptions } from '../../types/ocr.types';
 
 interface ConversionSettingsProps {
   options: OcrOptions;
@@ -15,19 +15,21 @@ export default function ConversionSettings({
   options,
   onOptionChange,
   onStartConversion,
-  disabled
+  disabled,
 }: ConversionSettingsProps) {
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
       <h2 className="text-lg font-semibold mb-4">Cài đặt chuyển đổi</h2>
-      
+
       <div className="space-y-6">
         {/* Ngôn ngữ OCR */}
         <div>
-          <Label htmlFor="language" className="block mb-2">Ngôn ngữ văn bản</Label>
+          <Label htmlFor="language" className="block mb-2">
+            Ngôn ngữ văn bản
+          </Label>
           <Select
             value={options.language}
-            onValueChange={(value) => onOptionChange({ language: value })}
+            onValueChange={value => onOptionChange({ language: value })}
             disabled={disabled}
           >
             <SelectTrigger id="language" className="w-full">
@@ -48,13 +50,13 @@ export default function ConversionSettings({
             Chọn ngôn ngữ chính có trong tài liệu để cải thiện độ chính xác
           </p>
         </div>
-        
+
         {/* Chất lượng OCR */}
         <div>
           <Label className="block mb-2">Chất lượng OCR</Label>
           <RadioGroup
             value={options.quality}
-            onValueChange={(value) => onOptionChange({ quality: value as 'medium' | 'high' })}
+            onValueChange={value => onOptionChange({ quality: value as 'medium' | 'high' })}
             className="flex flex-col space-y-2"
             disabled={disabled}
           >
@@ -72,18 +74,14 @@ export default function ConversionSettings({
             </div>
           </RadioGroup>
         </div>
-        
+
         {/* Nút bắt đầu chuyển đổi */}
         <div className="pt-2">
-          <Button
-            onClick={onStartConversion}
-            disabled={disabled}
-            className="w-full"
-          >
+          <Button onClick={onStartConversion} disabled={disabled} className="w-full">
             Bắt đầu chuyển đổi
           </Button>
         </div>
       </div>
     </div>
   );
-} 
+}

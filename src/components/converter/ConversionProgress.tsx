@@ -21,24 +21,22 @@ export default function ConversionProgress({ progress }: ConversionProgressProps
         return 'Đang xử lý';
     }
   };
-  
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
       <div className="flex justify-between mb-2">
         <span className="text-sm font-medium">{getStageLabel()}</span>
         <span className="text-sm text-gray-500">{Math.round(progress.percent)}%</span>
       </div>
-      
+
       <div className="w-full bg-gray-200 rounded-full h-2.5">
-        <div 
-          className="bg-blue-500 h-2.5 rounded-full transition-all duration-300" 
+        <div
+          className="bg-blue-500 h-2.5 rounded-full transition-all duration-300"
           style={{ width: `${Math.max(5, progress.percent)}%` }}
         />
       </div>
-      
-      {progress.status && (
-        <p className="text-xs text-gray-500 mt-2">{progress.status}</p>
-      )}
+
+      {progress.status && <p className="text-xs text-gray-500 mt-2">{progress.status}</p>}
     </div>
   );
-} 
+}

@@ -25,4 +25,4 @@ export interface OcrMessage {
 export interface OcrResult {
   pageNumber: number;
   text: string;
-} 
+}

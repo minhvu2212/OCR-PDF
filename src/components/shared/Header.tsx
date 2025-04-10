@@ -11,7 +11,7 @@ export default function Header() {
             <FileSearch className="h-8 w-8 text-blue-500 mr-2" />
             <span className="text-xl font-bold text-gray-900">PDF OCR</span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
             <Link to="/" className="text-gray-700 hover:text-blue-500">
               Trang chủ
@@ -26,7 +26,7 @@ export default function Header() {
               FAQ
             </Link>
           </nav>
-          
+
           <div>
             <Link to="/app">
               <Button>Bắt đầu ngay</Button>
@@ -36,4 +36,4 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}

@@ -8,67 +8,70 @@ interface FileUploaderProps {
   isProcessing: boolean;
 }
 
-export default function FileUploader({
-  file,
-  onFileChange,
-  isProcessing
-}: FileUploaderProps) {
+export default function FileUploader({ file, onFileChange, isProcessing }: FileUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
-  
+
   // Xử lý kéo thả file
   const handleDrag = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (e.type === 'dragenter' || e.type === 'dragover') {
       setDragActive(true);
     } else if (e.type === 'dragleave') {
       setDragActive(false);
     }
   }, []);
-  
+
   // Xử lý khi thả file
-  const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0 && !isProcessing) {
-      const uploadedFile = e.dataTransfer.files[0];
-      validateAndSetFile(uploadedFile);
-    }
-  }, [isProcessing, onFileChange]);
-  
+  const handleDrop = useCallback(
+    (e: React.DragEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setDragActive(false);
+
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0 && !isProcessing) {
+        const uploadedFile = e.dataTransfer.files[0];
+        validateAndSetFile(uploadedFile);
+      }
+    },
+    [isProcessing, onFileChange]
+  );
+
   // Xử lý khi chọn file qua input
-  const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0 && !isProcessing) {
-      const uploadedFile = e.target.files[0];
-      validateAndSetFile(uploadedFile);
-    }
-  }, [isProcessing, onFileChange]);
-  
+  const handleFileChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files.length > 0 && !isProcessing) {
+        const uploadedFile = e.target.files[0];
+        validateAndSetFile(uploadedFile);
+      }
+    },
+    [isProcessing, onFileChange]
+  );
+
   // Kiểm tra và thiết lập file
   const validateAndSetFile = (uploadedFile: File) => {
     if (uploadedFile.type !== 'application/pdf') {
       alert('Chỉ chấp nhận file PDF. Vui lòng chọn lại.');
       return;
     }
-    
-    if (uploadedFile.size > 50 * 1024 * 1024) { // 50MB limit
+
+    if (uploadedFile.size > 50 * 1024 * 1024) {
+      // 50MB limit
       alert('Kích thước file quá lớn. Vui lòng chọn file nhỏ hơn 50MB.');
       return;
     }
-    
+
     onFileChange(uploadedFile);
   };
-  
+
   // Xóa file đã chọn
   const handleRemoveFile = useCallback(() => {
     if (!isProcessing) {
       onFileChange(null);
     }
   }, [isProcessing, onFileChange]);
-  
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
       {!file ? (
@@ -100,9 +103,7 @@ export default function FileUploader({
               onChange={handleFileChange}
               disabled={isProcessing}
             />
-            <p className="text-xs text-gray-400 mt-3">
-              Tối đa 50MB. Chỉ chấp nhận file PDF.
-            </p>
+            <p className="text-xs text-gray-400 mt-3">Tối đa 50MB. Chỉ chấp nhận file PDF.</p>
           </div>
         </div>
       ) : (
@@ -113,9 +114,7 @@ export default function FileUploader({
             </div>
             <div>
               <h3 className="font-medium text-gray-800">{file.name}</h3>
-              <p className="text-sm text-gray-500">
-                {(file.size / 1024 / 1024).toFixed(2)} MB
-              </p>
+              <p className="text-sm text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
             </div>
           </div>
           {!isProcessing && (
@@ -132,4 +131,4 @@ export default function FileUploader({
       )}
     </div>
   );
-} 
+}
