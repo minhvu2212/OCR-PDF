@@ -2,7 +2,7 @@ import { extractPdfPages } from './pdfReader';
 import { createSearchablePdf, createTextOnlyPdf } from './pdfCreator';
 import { OcrService } from '../ocr/ocrService';
 import { OcrOptions, OcrProgress } from '../../types/ocr.types';
-import { ConversionProgress, PageOcrResult, PdfPageInfo } from '../../types/pdf.types';
+import { ConversionProgress, PageOcrResult } from '../../types/pdf.types';
 
 export class PdfOcrService {
   private ocrService: OcrService;

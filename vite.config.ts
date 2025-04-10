@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'robots.txt', 'lang-data/*.traineddata'],
+      includeAssets: ['favicon.ico', 'robots.txt', 'seo/sitemap.xml', 'seo/robots.txt', 'lang-data/*.traineddata'],
       manifest: {
         name: 'PDF OCR - Chuyển đổi PDF dạng ảnh sang PDF có thể tìm kiếm',
         short_name: 'PDF OCR',
