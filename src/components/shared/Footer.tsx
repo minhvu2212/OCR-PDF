@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Github, Twitter, Mail } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -60,15 +60,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Theo dõi</h3>
             <div className="flex space-x-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-500">
+              <a href="https:https://github.com/minhvu2212/OCR-PDF" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-500">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-500">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="mailto:contact@pdf-ocr-app.com" className="text-gray-500 hover:text-blue-500">
-                <Mail className="h-5 w-5" />
-              </a>
+
             </div>
           </div>
         </div>
@@ -78,7 +73,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} PDF OCR. Bản quyền thuộc về chúng tôi.
           </p>
           <p className="text-sm text-gray-500 mt-2 md:mt-0">
-            Được phát triển bởi <a href="#" className="text-blue-500 hover:underline">Nhóm OCR</a>
+            Được phát triển bởi <a href="#" className="text-blue-500 hover:underline">minhvu2212</a>
           </p>
         </div>
       </div>
